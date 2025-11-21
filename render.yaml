@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: encuestas-app
+    runtime: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn survey_app.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "false"
+      - key: SECRET_KEY
+        sync: false
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost,127.0.0.1"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: encuestas-db
+          property: connectionString
+    healthCheckPath: /
+databases:
+  - name: encuestas-db
+    databaseName: encuestas_db
+    user: encuestas_user

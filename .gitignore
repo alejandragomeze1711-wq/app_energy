@@ -1,0 +1,19 @@
+# Entorno virtual
+venv/
+*.venv/
+.env
+.env.local
+
+# Base de datos local
+db.sqlite3
+
+# Archivos temporales y caché
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
+
+# Logs y dumps
+*.log
+*.dump

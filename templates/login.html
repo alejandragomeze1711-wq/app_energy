@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="{{ static('src/output.css') }}">
+</head>
+
+<body>
+    <main class="h-screen [background:#212332] text-white flex items-center justify-center">
+        <form method="post" class="[background:#2A2D3E] py-8 px-12">
+            {{ csrf_input }}
+            <h1 class="text-center my-4 text-2xl">Survey Login</h1>
+            {% for field in form %}
+            <div class="my-4">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <input 
+                type="{{ field.field.widget.attrs.input_type }}" 
+                class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                name="{{ field.name }}"
+                {% for attr in field.field.widget.attrs %}
+                {{ attr }} = "{{ field.field.widget.attrs[attr] }}"
+                {% endfor %}
+                required
+                id="{{ field.auto_id }}"
+                >
+            </div>
+            {% endfor %}
+            <button type="submit" class="py-1.5 px-3 my-2 [background:#605BFF] w-full">Log in</button>
+            {% if error %}
+            <div class="text-red-500">{{ error }}</div>
+            {% endif %}
+            <p>¿No tienes una cuenta? Registrate <a href="/register" class="[color:#605BFF]">aquí</a></p>
+        </form>
+    </main>
+</body>
+
+</html>

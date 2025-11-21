@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ static('src/output.css') }}">
+</head>
+
+<body class="[background:#212332] text-white">
+  <main id="app">
+    {% include "layouts/header.html" ignore missing %}
+
+    {% include "layouts/sidebar.html" ignore missing %}
+
+    <div class="[grid-area:main] [background:#2A2D3E] p-4">
+      <h1 class="text-3xl font-bold">Encuesta</h1>
+      <div class="my-4">
+        <h3 class="text-2xl font-bold">Uso general de energía en el hogar</h3>
+        <!-- 🟢 Uso general de energía en el hogar -->
+        <div class="flex flex-col my-2"><span>¿Cuántas personas viven en tu hogar?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_1.text }}</span>
+        {% if responses.question_1.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_1.recommendation }}</p>
+            {% endif %}
+        
+        </div>
+            
+        <div class="flex flex-col my-2"><span>¿Cuánto tiempo promedio permanecen en casa durante el día?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_2.text }}</span>
+        {% if responses.question_2.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_2.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Tienes conocimiento del consumo mensual promedio de tu hogar (en kWh o
+            valor de la factura)?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_3.text }}</span>
+        {% if responses.question_3.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_3.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Apagas los dispositivos cuando no los usas, o los dejas
+            conectados?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_4.text }}</span>
+        {% if responses.question_4.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_4.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Desconectas los cargadores de celular cuando no están en uso?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_5.text }}</span>
+        {% if responses.question_5.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_5.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 🟡 Iluminación -->
+        <div class="flex flex-col my-2"><span>¿Qué tipo de bombillos usas principalmente?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_6.text }}</span>
+        {% if responses.question_6.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_6.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Sueles apagar las luces al salir de una habitación?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_7.text }}</span>
+        {% if responses.question_7.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_7.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Aprovechas la luz natural durante el día?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_8.text }}</span>
+        {% if responses.question_8.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_8.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Cuentas con sensores o temporizadores de luz?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_9.text }}</span>
+        {% if responses.question_9.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_9.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Con qué frecuencia limpias las lámparas o luminarias?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_10.text }}</span>
+        {% if responses.question_10.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_10.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Tienes bombillos encendidos en zonas donde no hay personas (pasillos,
+            patios, balcones)?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_11.text }}</span>
+        {% if responses.question_11.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_11.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 🔵 Electrodomésticos y cocina -->
+        <div class="flex flex-col my-2"><span>¿Qué tipo de nevera tienes y de qué año es?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_12.text }}</span>
+        {% if responses.question_12.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_12.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Abres la nevera constantemente o solo cuando es necesario?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_13.text }}</span>
+        {% if responses.question_13.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_13.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Descongelas el congelador con frecuencia?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_14.text }}</span>
+        {% if responses.question_14.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_14.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Usas horno eléctrico o microondas para cocinar regularmente?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_15.text }}</span>
+        {% if responses.question_15.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_15.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Dejas los electrodomésticos en modo “stand-by”?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_16.text }}</span>
+        {% if responses.question_16.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_16.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Desconectas los pequeños electrodomésticos después de usarlos (licuadora,
+            tostadora, cafetera)?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_17.text }}</span>
+        {% if responses.question_17.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_17.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Cocinas con tapas en las ollas para aprovechar mejor el
+            calor?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_18.text }}</span>
+        {% if responses.question_18.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_18.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Hierves solo la cantidad de agua necesaria al cocinar o
+            calentar?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_19.text }}</span>
+        {% if responses.question_19.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_19.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 🟠 Climatización y confort -->
+        <div class="flex flex-col my-2"><span>¿Tienes aire acondicionado o calefacción?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_20.text }}</span>
+        {% if responses.question_20.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_20.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿A qué temperatura promedio lo configuras?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_21.text }}</span>
+        {% if responses.question_21.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_21.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Apagas el equipo cuando no hay nadie en casa?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_22.text }}</span>
+        {% if responses.question_22.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_22.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Ventilas los espacios de forma natural?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_23.text }}</span>
+        {% if responses.question_23.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_23.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Realizas mantenimiento o limpieza periódica de filtros en el aire
+            acondicionado o ventiladores?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_24.text }}</span>
+        {% if responses.question_24.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_24.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Usas ventiladores en lugar de aire acondicionado cuando es
+            posible?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_25.text }}</span>
+        {% if responses.question_25.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_25.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Cierras puertas y ventanas cuando usas aire acondicionado o
+            calefacción?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_26.text }}</span>
+        {% if responses.question_26.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_26.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Utilizas cortinas o persianas para conservar la temperatura
+            interior?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_27.text }}</span>
+        {% if responses.question_27.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_27.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 🧼 Lavado y agua caliente -->
+        <div class="flex flex-col my-2"><span>¿Usas lavadora o secadora? ¿Con qué frecuencia semanal?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_28.text }}</span>
+        {% if responses.question_28.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_28.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Utilizas agua caliente para lavar la ropa?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_29.text }}</span>
+        {% if responses.question_29.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_29.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Tienes calentador de agua eléctrico o a gas?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_30.text }}</span>
+            {% if responses.question_30.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_30.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Cuánto tiempo promedio duran tus duchas?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_31.text }}</span>
+        {% if responses.question_31.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_31.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Tu ducha cuenta con cabezal o dispositivo ahorrador de agua?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_32.text }}</span>
+        {% if responses.question_32.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_32.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Lavas la ropa con carga completa en lugar de cargas pequeñas?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_33.text }}</span>
+        {% if responses.question_33.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_33.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Secas la ropa al aire libre en lugar de usar secadora?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_34.text }}</span>
+        {% if responses.question_34.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_34.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Apagas el calentador de agua cuando no se necesita?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_35.text }}</span>
+        {% if responses.question_35.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_35.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 💻 Tecnología y entretenimiento -->
+        <div class="flex flex-col my-2"><span>¿Dejas encendidos televisores, consolas o computadores cuando no los
+            usas?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_36.text }}</span>
+        {% if responses.question_36.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_36.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Cargas dispositivos durante la noche o en horarios de bajo costo
+            energético?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_37.text }}</span>
+        {% if responses.question_37.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_37.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Sabes cuánta energía consumen tus dispositivos electrónicos
+            principales?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_38.text }}</span>
+        {% if responses.question_38.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_38.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Apagas completamente el computador o lo dejas en suspensión?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_39.text }}</span>
+        {% if responses.question_39.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_39.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Usas el modo “ahorro de energía” en tus dispositivos?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_40.text }}</span>
+        {% if responses.question_40.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_40.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Desconectas el cargador del celular una vez se carga
+            completamente?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_41.text }}</span>
+        {% if responses.question_41.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_41.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Utilizas regletas con interruptor para conectar equipos tecnológicos (TV,
+            PC, consola, etc.)?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_42.text }}</span>
+        {% if responses.question_42.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_42.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Programas los televisores o consolas con temporizador de
+            apagado?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_43.text }}</span>
+        {% if responses.question_43.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_43.recommendation }}</p>
+            {% endif %}
+        </div>
+
+        <!-- 🌱 Conciencia y hábitos sostenibles -->
+        <div class="flex flex-col my-2"><span>¿Conoces el significado de la etiqueta de eficiencia
+            energética?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_44.text }}</span>
+        {% if responses.question_44.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_44.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Revisas la etiqueta antes de comprar un nuevo
+            electrodoméstico?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_45.text }}</span>
+        {% if responses.question_45.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_45.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Has implementado alguna medida para reducir tu consumo eléctrico en el
+            último año?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_46.text }}</span>
+        {% if responses.question_46.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_46.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Te interesa recibir recomendaciones personalizadas para mejorar tus
+            hábitos?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_47.text }}</span>
+        {% if responses.question_47.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_47.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Has participado en campañas, talleres o actividades sobre ahorro
+            energético o sostenibilidad?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_48.text }}</span>
+        {% if responses.question_48.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_48.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Conoces los principales factores que más influyen en el consumo
+            energético de tu hogar?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_49.text }}</span>
+        {% if responses.question_49.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_49.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Estarías dispuesto a reemplazar dispositivos antiguos por modelos más
+            eficientes si existieran incentivos o subsidios?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_50.text }}</span>
+        {% if responses.question_50.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_50.recommendation }}</p>
+            {% endif %}
+        </div>
+        <div class="flex flex-col my-2"><span>¿Te interesa conocer tu huella de carbono o el impacto ambiental de tu
+            consumo eléctrico?</span><span
+            class="py-1.5 px-3 my-1 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all">{{
+            responses.question_51.text }}</span>
+        {% if responses.question_51.recommendation %}
+            <p><span class="font-bold">Recomendación: </span>{{ responses.question_51.recommendation }}</p>
+            {% endif %}
+        </div>
+      </div>
+  </main>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  <script src="{{ static('assets/js/sidebar.js') }}"></script>
+  <script src="{{ static('assets/js/loader.js') }}"></script>
+  <script src="{{ static('assets/js/sheet.crud.js') }}"></script>
+  <script src="{{ static('assets/js/sheet.api.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ static('src/output.css') }}">
+</head>
+
+<body class="[background:#212332] text-white">
+    <main id="app">
+        {% include "layouts/header.html" ignore missing %}
+
+        {% include "layouts/sidebar.html" ignore missing %}
+
+        <div class="[grid-area:main] [background:#2A2D3E] p-4">
+            <h1 class="text-3xl font-bold">Encuesta</h1>
+
+            <form action="/survey/post/" method="post">
+                <div class="my-4">
+                    <h3 class="text-2xl font-bold">Uso general de energía en el hogar</h3>
+                    <div class="my-2">
+                        <label for="question_1">¿Cuántas personas viven en tu hogar?</label>
+                        <select name="question_1" id="question_1"
+                            class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                            required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="0">1 persona</option>
+                            <option value="1">2 personas</option>
+                            <option value="2">3 a 4 personas</option>
+                            <option value="3">5 a 6 personas</option>
+                            <option value="4">Más de 6 personas</option>
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label for="question_2">¿Cuánto tiempo promedio permanecen en casa durante el día?</label>
+                        <select name="question_2" id="question_2"
+                            class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                            required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="0">Menos de 4 horas</option>
+                            <option value="1">Entre 4 y 8 horas</option>
+                            <option value="2">Entre 8 y 12 horas</option>
+                            <option value="3">Más de 12 horas</option>
+                            <option value="4">Todo el día (24h)</option>
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label for="question_3">¿Tienes conocimiento del consumo mensual promedio de tu hogar (en kWh o
+                            valor de la factura)?</label>
+                        <select name="question_3" id="question_3"
+                            class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                            required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="0">Sí, conozco el valor en kWh y COP</option>
+                            <option value="1">Sí, conozco solo el valor en COP</option>
+                            <option value="2">Conozco el valor aproximado</option>
+                            <option value="3">No, rara vez reviso la factura</option>
+                            <option value="4">No tengo idea del consumo mensual</option>
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label for="question_4">¿Apagas los dispositivos cuando no los usas, o los dejas
+                            conectados?</label>
+                        <select name="question_4" id="question_4"
+                            class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                            required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="0">Siempre los apago o desconecto</option>
+                            <option value="1">Casi siempre los apago</option>
+                            <option value="2">A veces los dejo conectados</option>
+                            <option value="3">Casi nunca los apago</option>
+                            <option value="4">Nunca los apago ni desconecto</option>
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label for="question_5">¿Desconectas los cargadores de celular cuando no están en uso?</label>
+                        <select name="question_5" id="question_5"
+                            class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                            required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="0">Siempre los desconecto</option>
+                            <option value="1">Casi siempre los desconecto</option>
+                            <option value="2">A veces los dejo conectados</option>
+                            <option value="3">Casi nunca los desconecto</option>
+                            <option value="4">Nunca los desconecto</option>
+                        </select>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold">Iluminación</h3>
+                <div class="my-2">
+                    <label for="question_6">¿Qué tipo de bombillos usas principalmente? </label>
+                    <select name="question_6" id="question_6"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">LED</option>
+                        <option value="1">Fluorescentes</option>
+                        <option value="2">Halógenos</option>
+                        <option value="3">Incandescentes</option>
+                        <option value="4">Mezcla o no sabe</option>
+                    </select>
+                </div>
+                <div class="my-2">
+                    <label for="question_7">¿Sueles apagar las luces al salir de una habitación?</label>
+                    <select name="question_7" id="question_7"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                <div class="my-2">
+                    <label for="question_8">¿Aprovechas la luz natural durante el día?</label>
+                    <select name="question_8" id="question_8"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">Aveces</option>65
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                <div class="my-2">
+                    <label for="question_9">¿Cuentas con sensores o temporizadores de luz?</label>
+                    <select name="question_9" id="question_9"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, en la mayoría de espacios</option>
+                        <option value="1">Sí, en algunos espacios</option>
+                        <option value="2">No, pero me interesa implementarlos</option>
+                        <option value="3">No, y no lo considero necesario</option>
+                        <option value="4">No tengo conocimiento sobre ellos</option>
+                    </select>
+                </div>
+                <div class="my-2">
+                    <label for="question_10">¿Con qué frecuencia limpias las lámparas o luminarias?</label>
+                    <select name="question_10" id="question_10"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Una vez al mes</option>
+                        <option value="1">Cada 3 meses</option>
+                        <option value="2">Cada 6 meses</option>
+                        <option value="3">Una vez al año</option>
+                        <option value="4">Nunca o casi nunca</option>
+                    </select>
+                </div>
+                <div class="my-2">
+                    <label for="question_11">¿Tienes bombillos encendidos en zonas donde no hay personas (pasillos,
+                        patios, balcones)?</label>
+                    <select name="question_11" id="question_11"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <h3 class="text-2xl font-bold"> Electrodomésticos y cocina</h3>
+                <!-- Pregunta 12 -->
+                <div class="my-2">
+                    <label for="question_12">¿Qué tipo de nevera tienes y de qué año es?</label>
+                    <select name="question_12" id="question_12"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Tipo A o superior (A+, A++)</option>
+                        <option value="1">Tipo B o C (2015–2020)</option>
+                        <option value="2">Tipo D o sin etiqueta (2010–2014)</option>
+                        <option value="3">Sin etiqueta o modelo anterior</option>
+                        <option value="4">No sabe / no recuerda</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 13 -->
+                <div class="my-2">
+                    <label for="question_13">¿Abres la nevera constantemente o solo cuando es necesario?</label>
+                    <select name="question_13" id="question_13"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Solo cuando es necesario</option>
+                        <option value="1">Pocas veces al día</option>
+                        <option value="2">Varias veces al día</option>
+                        <option value="3">Con frecuencia innecesaria</option>
+                        <option value="4">Muy constantemente</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 14 -->
+                <div class="my-2">
+                    <label for="question_14">¿Descongelas el congelador con frecuencia?</label>
+                    <select name="question_14" id="question_14"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Mensualmente</option>
+                        <option value="1">Cada 2–3 meses</option>
+                        <option value="2">Cada 6 meses</option>
+                        <option value="3">Una vez al año</option>
+                        <option value="4">Nunca o casi nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 15 -->
+                <div class="my-2">
+                    <label for="question_15">¿Usas horno eléctrico o microondas para cocinar regularmente?</label>
+                    <select name="question_15" id="question_15"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Muy poco (solo para recalentar)</option>
+                        <option value="1">1–3 veces por semana</option>
+                        <option value="2">4–6 veces por semana</option>
+                        <option value="3">Diario (1 vez al día)</option>
+                        <option value="4">Varias veces al día</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 16 -->
+                <div class="my-2">
+                    <label for="question_16">¿Dejas los electrodomésticos en modo “stand-by”?</label>
+                    <select name="question_16" id="question_16"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi siempre</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 17 -->
+                <div class="my-2">
+                    <label for="question_17">¿Desconectas los pequeños electrodomésticos después de usarlos (licuadora,
+                        tostadora, cafetera)?</label>
+                    <select name="question_17" id="question_17"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 18 -->
+                <div class="my-2">
+                    <label for="question_18">¿Cocinas con tapas en las ollas para aprovechar mejor el calor?</label>
+                    <select name="question_18" id="question_18"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 19 -->
+                <div class="my-2">
+                    <label for="question_19">¿Hierves solo la cantidad de agua necesaria al cocinar o calentar?</label>
+                    <select name="question_19" id="question_19"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                <h3 class="text-2xl font-bold"> Climatización y confort</h3>
+                <!-- Pregunta 20 -->
+                <div class="my-2">
+                    <label for="question_20">¿Tienes aire acondicionado o calefacción?</label>
+                    <select name="question_20" id="question_20"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">No tengo ninguno</option>
+                        <option value="1">Sí, pero lo uso solo en ocasiones necesarias</option>
+                        <option value="2">Sí, lo uso con frecuencia moderada</option>
+                        <option value="3">Sí, lo uso de forma habitual todos los días</option>
+                        <option value="4">Sí, permanece encendido gran parte del día</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 21 -->
+                <div class="my-2">
+                    <label for="question_21">¿A qué temperatura promedio lo configuras?</label>
+                    <select name="question_21" id="question_21"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Entre 24–26 °C (temperatura óptima)</option>
+                        <option value="1">Entre 22–23 °C</option>
+                        <option value="2">Entre 20–21 °C</option>
+                        <option value="3">Menos de 20 °C o más de 27 °C</option>
+                        <option value="4">No controlo la temperatura o no lo sé</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 22 -->
+                <div class="my-2">
+                    <label for="question_22">¿Apagas el equipo cuando no hay nadie en casa?</label>
+                    <select name="question_22" id="question_22"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 23 -->
+                <div class="my-2">
+                    <label for="question_23">¿Ventilas los espacios de forma natural?</label>
+                    <select name="question_23" id="question_23"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 24 -->
+                <div class="my-2">
+                    <label for="question_24">¿Realizas mantenimiento o limpieza periódica de filtros en el aire
+                        acondicionado o ventiladores?</label>
+                    <select name="question_24" id="question_24"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Cada 1–2 meses</option>
+                        <option value="1">Cada 3–6 meses</option>
+                        <option value="2">Una vez al año</option>
+                        <option value="3">Rara vez</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 25 -->
+                <div class="my-2">
+                    <label for="question_25">¿Usas ventiladores en lugar de aire acondicionado cuando es
+                        posible?</label>
+                    <select name="question_25" id="question_25"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 26 -->
+                <div class="my-2">
+                    <label for="question_26">¿Cierras puertas y ventanas cuando usas aire acondicionado o
+                        calefacción?</label>
+                    <select name="question_26" id="question_26"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 27 -->
+                <div class="my-2">
+                    <label for="question_27">¿Utilizas cortinas o persianas para conservar la temperatura
+                        interior?</label>
+                    <select name="question_27" id="question_27"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                <h3 class="text-2xl font-bold"> Lavado y agua caliente</h3>
+                <!-- Pregunta 28 -->
+                <div class="my-2">
+                    <label for="question_28">¿Usas lavadora o secadora? ¿Con qué frecuencia semanal?</label>
+                    <select name="question_28" id="question_28"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">1–2 veces por semana</option>
+                        <option value="1">3–4 veces por semana</option>
+                        <option value="2">5–6 veces por semana</option>
+                        <option value="3">Todos los días</option>
+                        <option value="4">Varias veces al día</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 29 -->
+                <div class="my-2">
+                    <label for="question_29">¿Utilizas agua caliente para lavar la ropa?</label>
+                    <select name="question_29" id="question_29"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Nunca</option>
+                        <option value="1">Solo en prendas específicas</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 30 -->
+                <div class="my-2">
+                    <label for="question_30">¿Tienes calentador de agua eléctrico o a gas?</label>
+                    <select name="question_30" id="question_30"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">No tengo calentador / uso agua fría</option>
+                        <option value="1">A gas natural o gas propano</option>
+                        <option value="2">Eléctrico de paso</option>
+                        <option value="3">Eléctrico de acumulación</option>
+                        <option value="4">No sé qué tipo de calentador tengo</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 31 -->
+                <div class="my-2">
+                    <label for="question_31">¿Cuánto tiempo promedio duran tus duchas?</label>
+                    <select name="question_31" id="question_31"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Menos de 5 minutos</option>
+                        <option value="1">Entre 5 y 10 minutos</option>
+                        <option value="2">Entre 10 y 15 minutos</option>
+                        <option value="3">Entre 15 y 20 minutos</option>
+                        <option value="4">Más de 20 minutos</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 32 -->
+                <div class="my-2">
+                    <label for="question_32">¿Tu ducha cuenta con cabezal o dispositivo ahorrador de agua?</label>
+                    <select name="question_32" id="question_32"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, con cabezal ahorrador certificado</option>
+                        <option value="1">Sí, con reducción de caudal artesanal</option>
+                        <option value="2">No, pero estoy interesado en instalar uno</option>
+                        <option value="3">No lo tengo ni lo considero necesario</option>
+                        <option value="4">No sé si mi ducha tiene ese dispositivo</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 33 -->
+                <div class="my-2">
+                    <label for="question_33">¿Lavas la ropa con carga completa en lugar de cargas pequeñas?</label>
+                    <select name="question_33" id="question_33"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 34 -->
+                <div class="my-2">
+                    <label for="question_34">¿Secas la ropa al aire libre en lugar de usar secadora?</label>
+                    <select name="question_34" id="question_34"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 35 -->
+                <div class="my-2">
+                    <label for="question_35">¿Apagas el calentador de agua cuando no se necesita?</label>
+                    <select name="question_35" id="question_35"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 focus:outline-offset-0 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                <h3 class="text-2xl font-bold">Tecnología y entretenimiento</h3>
+                <!-- Pregunta 36 -->
+                <div class="my-2">
+                    <label for="question_36">¿Dejas encendidos televisores, consolas o computadores cuando no los
+                        usas?</label>
+                    <select name="question_36" id="question_36"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 37 -->
+                <div class="my-2">
+                    <label for="question_37">¿Cargas dispositivos durante la noche o en horarios de bajo costo
+                        energético?</label>
+                    <select name="question_37" id="question_37"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, en horarios de bajo costo o con temporizador</option>
+                        <option value="1">Sí, pero sin temporizador</option>
+                        <option value="2">A veces los dejo cargando toda la noche</option>
+                        <option value="3">Casi siempre los dejo conectados</option>
+                        <option value="4">Siempre los dejo conectados sin control</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 38 -->
+                <div class="my-2">
+                    <label for="question_38">¿Sabes cuánta energía consumen tus dispositivos electrónicos
+                        principales?</label>
+                    <select name="question_38" id="question_38"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, conozco los valores aproximados</option>
+                        <option value="1">Tengo una idea general</option>
+                        <option value="2">No exactamente, pero me interesa</option>
+                        <option value="3">No, rara vez pienso en eso</option>
+                        <option value="4">No tengo idea / nunca lo he hecho</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 39 -->
+                <div class="my-2">
+                    <label for="question_39">¿Apagas completamente el computador o lo dejas en suspensión?</label>
+                    <select name="question_39" id="question_39"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre lo apago completamente</option>
+                        <option value="1">Casi siempre lo apago</option>
+                        <option value="2">A veces lo dejo en suspensión</option>
+                        <option value="3">Casi nunca lo apago</option>
+                        <option value="4">Nunca lo apago</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 40 -->
+                <div class="my-2">
+                    <label for="question_40">¿Usas el modo “ahorro de energía” en tus dispositivos?</label>
+                    <select name="question_40" id="question_40"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 41 -->
+                <div class="my-2">
+                    <label for="question_41">¿Desconectas el cargador del celular una vez se carga
+                        completamente?</label>
+                    <select name="question_41" id="question_41"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 42 -->
+                <div class="my-2">
+                    <label for="question_42">¿Utilizas regletas con interruptor para conectar equipos tecnológicos (TV,
+                        PC, consola, etc.)?</label>
+                    <select name="question_42" id="question_42"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, y las apago al terminar el día</option>
+                        <option value="1">Sí, pero no las apago</option>
+                        <option value="2">No, pero me gustaría tener una</option>
+                        <option value="3">No, uso enchufes directos</option>
+                        <option value="4">No sé qué es una regleta con interruptor</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 43 -->
+                <div class="my-2">
+                    <label for="question_43">¿Programas los televisores o consolas con temporizador de apagado?</label>
+                    <select name="question_43" id="question_43"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <h3 class="text-2xl font-bold">Conciencia y hábitos sostenibles</h3>
+                <!-- Pregunta 44 -->
+                <div class="my-2">
+                    <label for="question_44">¿Conoces el significado de la etiqueta de eficiencia energética?</label>
+                    <select name="question_44" id="question_44"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, la consulto al comprar equipos</option>
+                        <option value="1">Sí, conozco su significado básico</option>
+                        <option value="2">He oído hablar de ella, pero no sé</option>
+                        <option value="3">No la conozco bien</option>
+                        <option value="4">No tengo idea de qué significa</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 45 -->
+                <div class="my-2">
+                    <label for="question_45">¿Revisas la etiqueta antes de comprar un nuevo electrodoméstico?</label>
+                    <select name="question_45" id="question_45"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Siempre</option>
+                        <option value="1">Casi siempre</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Casi nunca</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 46 -->
+                <div class="my-2">
+                    <label for="question_46">¿Has implementado alguna medida para reducir tu consumo eléctrico en el
+                        último año?</label>
+                    <select name="question_46" id="question_46"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, varias (cambio de bombillos, horarios, equipos)</option>
+                        <option value="1">Sí, al menos una</option>
+                        <option value="2">Lo he pensado, pero no lo he hecho</option>
+                        <option value="3">No, no he tomado medidas</option>
+                        <option value="4">No me interesa</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 47 -->
+                <div class="my-2">
+                    <label for="question_47">¿Te interesa recibir recomendaciones personalizadas para mejorar tus
+                        hábitos?</label>
+                    <select name="question_47" id="question_47"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, definitivamente</option>
+                        <option value="1">Sí, dependiendo de la utilidad</option>
+                        <option value="2">Tal vez, si es fácil de aplicar</option>
+                        <option value="3">No mucho</option>
+                        <option value="4">No estoy interesado</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 48 -->
+                <div class="my-2">
+                    <label for="question_48">¿Has participado en campañas, talleres o actividades sobre ahorro
+                        energético o sostenibilidad?</label>
+                    <select name="question_48" id="question_48"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, en varias ocasiones</option>
+                        <option value="1">Sí, una vez</option>
+                        <option value="2">No, pero me gustaría participar</option>
+                        <option value="3">No, nunca he participado</option>
+                        <option value="4">No me interesa</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 49 -->
+                <div class="my-2">
+                    <label for="question_49">¿Conoces los principales factores que más influyen en el consumo energético
+                        de tu hogar?</label>
+                    <select name="question_49" id="question_49"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, los tengo identificados</option>
+                        <option value="1">Tengo una idea general</option>
+                        <option value="2">Pocas veces lo he analizado</option>
+                        <option value="3">No lo sé con certeza</option>
+                        <option value="4">No tengo idea</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 50 -->
+                <div class="my-2">
+                    <label for="question_50">¿Estarías dispuesto a reemplazar dispositivos antiguos por modelos más
+                        eficientes si existieran incentivos o subsidios?</label>
+                    <select name="question_50" id="question_50"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, sin dudarlo</option>
+                        <option value="1">Sí, si el costo es razonable</option>
+                        <option value="2">Tal vez, según el tipo de equipo</option>
+                        <option value="3">No lo considero necesario</option>
+                        <option value="4">No cambiaría mis equipos</option>
+                    </select>
+                </div>
+
+                <!-- Pregunta 51 -->
+                <div class="my-2">
+                    <label for="question_51">¿Te interesa conocer tu huella de carbono o el impacto ambiental de tu
+                        consumo eléctrico?</label>
+                    <select name="question_51" id="question_51"
+                        class="py-1.5 px-3 my-2 w-full [background:#212332] outline-none rounded-md focus:[outline-color:#605BFF] focus:outline-1 transition-all"
+                        required>
+                        <option value="" selected>Seleccionar</option>
+                        <option value="0">Sí, me gustaría medirla</option>
+                        <option value="1">Sí, pero no sé cómo hacerlo</option>
+                        <option value="2">Tal vez en el futuro</option>
+                        <option value="3">No me interesa mucho</option>
+                        <option value="4">No me interesa en absoluto</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="py-1.5 px-3 my-2 [background:#605BFF]">Guardar</button>
+        </div>
+        </form>
+        </div>
+    </main>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="{{ static('assets/js/sidebar.js') }}"></script>
+    <script src="{{ static('assets/js/loader.js') }}"></script>
+    <script src="{{ static('assets/js/sheet.crud.js') }}"></script>
+    <script src="{{ static('assets/js/sheet.api.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
